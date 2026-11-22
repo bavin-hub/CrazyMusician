@@ -1,0 +1,31 @@
+#
+namespace: ""                 
+enable_test: true            # true: print outputs only; false: publish to PX4.
+waypoints:                   
+  - [0.0, 0.0, -1.0]
+  # - [1.0, 0.0, -1.0]
+  # - [1.0, 1.0, -1.0]
+waypoint_tolerance: 0.15
+waypoint_speed_tolerance: 0.2
+waypoint_hold_time: 1.0
+
+controller:
+  control_rate: 100.0
+  yaw: 0.0
+  kpos_xy: 1.0
+  kpos_z: 1.0
+  wo_xy: 8.0
+  wo_z: 8.0
+  k_vel_xy: 1.8              # ESO model: match PX4 MPC_XY_VEL_P_ACC.
+  k_vel_z: 4.0               # ESO model: match PX4 MPC_Z_VEL_P_ACC.
+  vmax_xy: 1.0               # Velocity reference limit per horizontal axis, m/s.
+  vmax_z: 0.8                # Vertical velocity reference limit, m/s.
+  tilt_max_deg: 20.0
+  use_feedforward: true      # Disturbance cancellation: -z2.
+  use_r_ddot: true           # Reference acceleration feedforward.
+  move_time: 3.0             # Minimum-jerk duration per waypoint, seconds.
+  ff_ramp_time: 1.0          # Feedforward phase-in after observer reset, seconds.
+  feedback_timeout: 0.5
+  status_timeout: 2.0        # Automatic mode only.
+  target_system: 1           # PX4 MAV_SYS_ID; independent of namespace.
+  target_component: 1
